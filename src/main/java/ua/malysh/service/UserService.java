@@ -1,4 +1,4 @@
-package ua.malysh.servise;
+package ua.malysh.service;
 
 import ua.malysh.domain.User;
 

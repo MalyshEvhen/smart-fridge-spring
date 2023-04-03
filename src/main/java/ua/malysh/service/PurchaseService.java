@@ -1,15 +1,15 @@
-package ua.malysh.servise;
+package ua.malysh.service;
 
 import ua.malysh.domain.ShopReceipt;
 
 public interface PurchaseService {
     ShopReceipt purchaseRecipe(String username, Long recipeId);
-    
+
     ShopReceipt removeRecipe(String username, Long recipeId);
-    
+
     ShopReceipt getTotal(String username);
-    
+
     void cancelShopRecipe(String username);
-    
+
     ShopReceipt continuePurchase(String username);
 }

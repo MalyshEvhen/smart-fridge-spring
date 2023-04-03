@@ -1,4 +1,4 @@
-package ua.malysh.servise;
+package ua.malysh.service;
 
 import org.springframework.security.core.Authentication;
 

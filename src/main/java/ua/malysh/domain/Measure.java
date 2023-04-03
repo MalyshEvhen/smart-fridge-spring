@@ -5,12 +5,13 @@ public enum Measure {
     LITER("l"),
     PACKAGE("pack"),
     PIECE("pts");
-    
+
     private final String title;
+
     Measure(String title) {
         this.title = title;
     }
-    
+
     public String getTitle() {
         return title;
     }

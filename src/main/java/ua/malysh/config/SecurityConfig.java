@@ -22,37 +22,35 @@ import javax.crypto.spec.SecretKeySpec;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    
+
     @Value("${jwt.key}")
     private String jwtKey;
-    
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-            .csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(auth ->
-                {
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/").permitAll();
                     auth.requestMatchers("/login").permitAll();
                     auth.anyRequest().hasAuthority("SCOPE_READ");
-                }
-            )
-            .sessionManagement(session -> session.sessionCreationPolicy(
-                SessionCreationPolicy.STATELESS))
-            .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-            .httpBasic(Customizer.withDefaults())
-            .build();
+                })
+                .sessionManagement(session -> session.sessionCreationPolicy(
+                        SessionCreationPolicy.STATELESS))
+                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+                .httpBasic(Customizer.withDefaults())
+                .build();
     }
-    
+
     @Bean
     JwtEncoder jwtEncoder() {
         return new NimbusJwtEncoder(new ImmutableSecret<>(jwtKey.getBytes()));
     }
-    
+
     @Bean
-    public JwtDecoder jwtDecoder() {
+    JwtDecoder jwtDecoder() {
         byte[] bytes = jwtKey.getBytes();
-        SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length,"RSA");
+        SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length, "RSA");
         return NimbusJwtDecoder.withSecretKey(originalKey).macAlgorithm(MacAlgorithm.HS512).build();
     }
 }

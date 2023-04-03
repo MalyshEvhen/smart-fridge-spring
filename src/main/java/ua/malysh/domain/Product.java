@@ -24,9 +24,9 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "products", indexes = {
-        @Index(name = "idx_product_name", columnList = "name")
+        @Index(name = "idx_products_name", columnList = "name")
 }, uniqueConstraints = {
-        @UniqueConstraint(name = "uc_product_name", columnNames = { "name" })
+        @UniqueConstraint(name = "uc_products_name", columnNames = { "name" })
 })
 public class Product {
     @Id

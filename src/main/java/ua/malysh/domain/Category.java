@@ -10,13 +10,13 @@ public enum Category {
     SPICES("spices"),
     BAKERY("bakery"),
     DAIRY("dairy");
-    
+
     private final String title;
-    
+
     Category(String title) {
         this.title = title;
     }
-    
+
     public String getTitle() {
         return title;
     }
