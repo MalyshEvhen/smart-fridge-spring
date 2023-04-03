@@ -17,7 +17,7 @@ import ua.malysh.domain.Product;
 import ua.malysh.service.ProductService;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/product")
 public class ProductController {
     private final ProductService service;
 

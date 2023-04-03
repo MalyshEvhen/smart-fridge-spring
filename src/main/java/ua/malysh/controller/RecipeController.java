@@ -15,7 +15,7 @@ import ua.malysh.domain.Recipe;
 import ua.malysh.service.RecipeService;
 
 @RestController
-@RequestMapping("/recipe")
+@RequestMapping("/api/recipe")
 public class RecipeController {
     private final RecipeService service;
 

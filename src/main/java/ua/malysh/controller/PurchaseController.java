@@ -14,7 +14,7 @@ import ua.malysh.domain.ShopReceipt;
 import ua.malysh.service.PurchaseService;
 
 @RestController
-@RequestMapping("/purchase")
+@RequestMapping("/api/purchase")
 public class PurchaseController {
     private final PurchaseService purchaseService;
 
