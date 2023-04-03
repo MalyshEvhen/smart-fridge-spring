@@ -34,7 +34,7 @@ public class SecurityConfig {
                 {
                     auth.requestMatchers("/").permitAll();
                     auth.requestMatchers("/login").permitAll();
-                    auth.anyRequest().authenticated();
+                    auth.anyRequest().hasAuthority("SCOPE_READ");
                 }
             )
             .sessionManagement(session -> session.sessionCreationPolicy(
