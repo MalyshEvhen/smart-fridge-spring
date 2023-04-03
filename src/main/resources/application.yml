@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/students_db
+    username: postgres
+    password: 314159
+
+  flyway:
+    baseline-on-migrate: true
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+jwt:
+  key: 36k5lDuIG1hVZENgiO7pRzQu/pUZ7adZi2keBOjNCxKV8PjeybHUYznjwD+K7qVj
