@@ -2,13 +2,11 @@ package ua.malysh.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 import ua.malysh.domain.ShopReceipt;
 import ua.malysh.domain.Status;
 
 import java.util.Optional;
 
-@Repository
 public interface ShopReceiptRepository extends JpaRepository<ShopReceipt, Long> {
     
     @Query(
