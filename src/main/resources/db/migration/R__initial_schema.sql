@@ -50,7 +50,7 @@ CREATE TABLE ingredients
 CREATE TABLE shop_receipts
 (
     id         BIGINT  NOT NULL,
-    user_id TEXT    NOT NULL,
+    user_id    TEXT    NOT NULL,
     status     TEXT    NOT NULL,
     sum        NUMERIC NOT NULL,
     CONSTRAINT pk_shop_receipts_id PRIMARY KEY (id),
