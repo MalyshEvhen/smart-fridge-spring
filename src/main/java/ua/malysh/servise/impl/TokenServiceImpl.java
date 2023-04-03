@@ -8,13 +8,14 @@ import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
+import ua.malysh.servise.TokenService;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.stream.Collectors;
 
 @Service
-public class TokenServiceImpl implements ua.malysh.servise.TokenService {
+public class TokenServiceImpl implements TokenService {
     private final JwtEncoder encoder;
     
     public TokenServiceImpl(JwtEncoder encoder) {
@@ -24,7 +25,8 @@ public class TokenServiceImpl implements ua.malysh.servise.TokenService {
     @Override
     public String generateToken(Authentication authentication) {
         Instant now = Instant.now();
-        String scope = authentication.getAuthorities().stream()
+        String scope = authentication.getAuthorities()
+            .stream()
             .map(GrantedAuthority::getAuthority)
             .filter(authority -> !authority.startsWith("ROLE"))
             .collect(Collectors.joining(" "));
