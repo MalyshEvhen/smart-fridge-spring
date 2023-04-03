@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ua.malysh.domain.ShopReceipt;
 import ua.malysh.servise.PurchaseService;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/purchase")
 public class PurchaseController {
@@ -24,9 +26,9 @@ public class PurchaseController {
     @PostMapping("/{recipeId}")
     public ShopReceipt addRecipe(
         @PathVariable Long recipeId,
-        Authentication authentication
+        Principal principal
     ) {
-        var username = authentication.getName();
+        var username = principal.getName();
         
         return purchaseService.purchaseRecipe(username, recipeId);
     }
@@ -34,30 +36,30 @@ public class PurchaseController {
     @PutMapping("/{recipeId}")
     public ShopReceipt removeRecipe(
         @PathVariable Long recipeId,
-        Authentication authentication
+        Principal principal
     ) {
-        var username = authentication.getName();
+        var username = principal.getName();
         
         return purchaseService.removeRecipe(username, recipeId);
     }
     
     @GetMapping
-    public ShopReceipt checkout(Authentication authentication) {
-        var username = authentication.getName();
+    public ShopReceipt checkout(Principal principal) {
+        var username = principal.getName();
         
         return purchaseService.continuePurchase(username);
     }
     
     @GetMapping("/submit")
-    public ShopReceipt submitPurchase(Authentication authentication) {
-        var username = authentication.getName();
+    public ShopReceipt submitPurchase(Principal principal) {
+        var username = principal.getName();
         
         return purchaseService.getTotal(username);
     }
     
     @DeleteMapping
-    public void cancelPurchase(Authentication authentication) {
-        var username = authentication.getName();
+    public void cancelPurchase(Principal principal) {
+        var username = principal.getName();
         
         purchaseService.cancelShopRecipe(username);
     }
